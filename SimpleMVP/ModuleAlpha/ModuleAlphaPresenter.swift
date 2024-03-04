@@ -53,6 +53,6 @@ final class ModuleAlphaPresenter: ModuleAlphaPresenterProtocol {
     
     func tapButton() {
         // открыть модуль Beta и передать туда параметры
-        router.openModuleBeta(with: "params from module Alpha")
+        router.openModuleBeta(with: "Сколько лет самому старому человеку на планете?")
     }
 }

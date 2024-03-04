@@ -9,8 +9,10 @@ import Foundation
 protocol ModuleBetaPresenterProtocol {
     var title: String { get }
     
-    func viewDidAppear()
+    func viewDidAppear() // так принято называть? 
     func requestSave()
+    func showBModule(with: String?)
+    func closeAlert()
 }
 
 final class ModuleBetaPresenter: ModuleBetaPresenterProtocol {
@@ -53,10 +55,20 @@ final class ModuleBetaPresenter: ModuleBetaPresenterProtocol {
             
             switch result {
             case .success:
-                router.showSuccess()
+                router.showSuccess { [weak self] in
+                    self?.view?.changeNameButton()
+                }
             case .failure:
                 router.showError()
             }
         }
+    }
+    
+    func showBModule(with text: String?) {
+        router.openModuleGamma(with: text ?? "")
+    }
+    
+    func closeAlert() {
+        view?.changeNameButton()
     }
 }

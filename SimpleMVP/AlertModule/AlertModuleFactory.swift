@@ -9,7 +9,7 @@ import UIKit
 
 final class AlertModuleFactory {
     
-    func make(title: String, message: String) -> UIViewController {
+    func make(title: String, message: String, onAction: @escaping (() -> Void)) -> UIViewController {
         let alertViewController = UIAlertController(
             title: title,
             message: message,
@@ -18,11 +18,12 @@ final class AlertModuleFactory {
         
         let action = UIAlertAction(
             title: "Ok",
-            style: .default, handler: nil
-        )
+            style: .default) { _ in
+                onAction()
+            }
         
         alertViewController.addAction(action)
-        
+        print("Alert")
         return alertViewController
     }
 }

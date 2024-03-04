@@ -13,12 +13,13 @@ protocol ModuleBetaViewProtocol: AnyObject {
     func showEmpty()
     func startLoader()
     func stopLoader()
+    func changeNameButton()
 }
 
 final class ModuleBetaViewController: UIViewController {
     
     private lazy var customView = ModuleBetaView(presenter: presenter)
-    private let presenter: ModuleBetaPresenterProtocol
+    let presenter: ModuleBetaPresenterProtocol
     
     init(presenter: ModuleBetaPresenterProtocol) {
         self.presenter = presenter
@@ -45,6 +46,9 @@ final class ModuleBetaViewController: UIViewController {
 }
 
 extension ModuleBetaViewController: ModuleBetaViewProtocol {
+    func changeNameButton() {
+        customView.changeButtonName()
+    }
     
     func update(model: ModuleBetaView.Model) {
         customView.update(model: model)
